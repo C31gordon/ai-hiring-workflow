@@ -68,6 +68,12 @@
       margin: 0 auto;
     }
     
+    .header .version {
+      font-size: 12px;
+      opacity: 0.6;
+      margin-top: 10px;
+    }
+    
     /* Legend */
     .legend {
       display: flex;
@@ -249,6 +255,16 @@
       color: #b45309;
     }
     
+    .step-note {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: rgba(16, 185, 129, 0.1);
+      border-radius: 8px;
+      font-size: 11px;
+      color: #047857;
+      border-left: 3px solid var(--success);
+    }
+    
     /* Connector */
     .connector {
       display: flex;
@@ -424,6 +440,35 @@
       text-align: center;
     }
     
+    /* Changelog */
+    .changelog {
+      margin-top: 50px;
+      padding-top: 40px;
+      border-top: 2px solid var(--gray-100);
+    }
+    
+    .changelog h3 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: var(--gray-800);
+    }
+    
+    .changelog-item {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 12px;
+      font-size: 13px;
+    }
+    
+    .changelog-date {
+      color: var(--gray-500);
+      min-width: 100px;
+    }
+    
+    .changelog-text {
+      color: var(--gray-700);
+    }
+    
     /* Footer */
     .footer {
       text-align: center;
@@ -463,13 +508,14 @@
 <div class="container">
   <div class="header">
     <h1>🤖 AI-Powered Hiring Workflow</h1>
-    <p>From Job Requisition to Day 1 — Fully Automated with Millie in the Loop</p>
+    <p>From Job Requisition to Day 1 — Fully Automated with Human-in-the-Loop</p>
+    <div class="version">v2.0 — Updated February 12, 2026</div>
   </div>
   
   <div class="legend">
     <div class="legend-item">
       <div class="legend-dot legend-dot--ai"></div>
-      <span>AI-Automated (Millie)</span>
+      <span>AI-Automated</span>
     </div>
     <div class="legend-item">
       <div class="legend-dot legend-dot--human"></div>
@@ -485,7 +531,7 @@
         <div class="phase-number">1</div>
         <div>
           <div class="phase-title">Job Requisition</div>
-          <div class="phase-subtitle">Define the role and get approval</div>
+          <div class="phase-subtitle">Define the role and validate budget</div>
         </div>
       </div>
       
@@ -494,33 +540,35 @@
           <div class="step-badge">AI</div>
           <div class="step-icon">📋</div>
           <div class="step-title">Generate Job Description</div>
-          <div class="step-desc">Create comprehensive JD based on role title, department, and level. Include responsibilities, requirements, and compensation range from market data.</div>
+          <div class="step-desc">Pull JD from templates database. For new roles, draft based on title/department/level, then route to human for review. Include requirements and compensation from comp study.</div>
           <div class="step-actions">
-            <span class="step-action">Draft JD</span>
-            <span class="step-action">Salary benchmarking</span>
-            <span class="step-action">Skills matrix</span>
+            <span class="step-action">Pull JD template</span>
+            <span class="step-action">Comp benchmarking</span>
+            <span class="step-action">Location customize</span>
           </div>
+          <div class="step-note">📌 Static JDs for existing roles; human reviews new JDs only</div>
         </div>
         
         <div class="step step--ai">
           <div class="step-badge">AI</div>
           <div class="step-icon">💰</div>
           <div class="step-title">Budget Validation</div>
-          <div class="step-desc">Check if requisition is within approved headcount budget. If yes, auto-approve and proceed. If no, escalate to human.</div>
+          <div class="step-desc">Check if requisition is within approved headcount budget. Flag exceptions for human review — does not hard-block. Proceed while flagged items route to approver.</div>
           <div class="step-actions">
             <span class="step-action">Budget check</span>
             <span class="step-action">Headcount verify</span>
-            <span class="step-action">Auto-route</span>
+            <span class="step-action">Flag exceptions</span>
           </div>
+          <div class="step-note">📌 Soft flag, not hard block — keeps process moving</div>
         </div>
       </div>
       
       <div class="decision">
         <div class="decision-title">Budget Exception?</div>
-        <div class="decision-desc">If requisition exceeds approved budget, human approval required</div>
+        <div class="decision-desc">Over-budget requisitions flagged for human review (process continues in parallel)</div>
         <div class="decision-options">
           <div class="decision-option decision-option--yes">✓ Within Budget → Continue</div>
-          <div class="decision-option decision-option--no">✗ Over Budget → Human Review</div>
+          <div class="decision-option decision-option--no">⚠️ Over Budget → Flag + Continue</div>
         </div>
       </div>
     </div>
@@ -531,7 +579,7 @@
         <div class="phase-number">2</div>
         <div>
           <div class="phase-title">Candidate Sourcing</div>
-          <div class="phase-subtitle">Post jobs and find candidates</div>
+          <div class="phase-subtitle">Post jobs, optimize spend, and find candidates</div>
         </div>
       </div>
       
@@ -540,11 +588,36 @@
           <div class="step-badge">AI</div>
           <div class="step-icon">📢</div>
           <div class="step-title">Post to Job Boards</div>
-          <div class="step-desc">Automatically post optimized listings to Indeed, LinkedIn, ZipRecruiter, and industry-specific boards based on role type.</div>
+          <div class="step-desc">Automatically post optimized listings to Indeed, LinkedIn, ZipRecruiter, Glassdoor, and industry-specific boards. All candidate data syncs to Paycor immediately.</div>
           <div class="step-actions">
             <span class="step-action">Multi-post</span>
             <span class="step-action">SEO optimize</span>
-            <span class="step-action">Track sources</span>
+            <span class="step-action">Sync to Paycor</span>
+          </div>
+          <div class="step-note">📌 Data centralized in Paycor — no orphaned candidates on platforms</div>
+        </div>
+        
+        <div class="step step--ai">
+          <div class="step-badge">AI</div>
+          <div class="step-icon">💵</div>
+          <div class="step-title">Sponsorship Optimization</div>
+          <div class="step-desc">Analyze role, location, and posting day to recommend optimal sponsorship amount and duration. Monitor candidate flow and flag early closure opportunities.</div>
+          <div class="step-actions">
+            <span class="step-action">Recommend spend</span>
+            <span class="step-action">Set stop date</span>
+            <span class="step-action">Monitor + close early</span>
+          </div>
+          <div class="step-note">📌 AI recommends, human approves spend. AI monitors and adjusts.</div>
+        </div>
+        
+        <div class="step step--human">
+          <div class="step-badge">HUMAN</div>
+          <div class="step-icon">✅</div>
+          <div class="step-title">Approve Sponsorship</div>
+          <div class="step-desc">Review AI sponsorship recommendation. Approve, adjust, or override based on urgency and budget. One-time approval per job.</div>
+          <div class="step-actions">
+            <span class="step-action">Review recommendation</span>
+            <span class="step-action">Approve/Adjust</span>
           </div>
         </div>
         
@@ -552,23 +625,36 @@
           <div class="step-badge">AI</div>
           <div class="step-icon">🔍</div>
           <div class="step-title">Proactive Sourcing</div>
-          <div class="step-desc">Search LinkedIn, GitHub, and talent databases for passive candidates matching the role requirements. Build outreach list.</div>
+          <div class="step-desc">Search LinkedIn, GitHub, and talent databases for passive candidates matching the role requirements. Build outreach list with frequency control.</div>
           <div class="step-actions">
             <span class="step-action">Boolean search</span>
             <span class="step-action">Profile matching</span>
-            <span class="step-action">Build pipeline</span>
+            <span class="step-action">90-day frequency cap</span>
           </div>
+          <div class="step-note">📌 Won't contact same person within 90 days for similar roles</div>
         </div>
         
         <div class="step step--ai">
           <div class="step-badge">AI</div>
           <div class="step-icon">✉️</div>
           <div class="step-title">Candidate Outreach</div>
-          <div class="step-desc">Send personalized outreach messages to passive candidates. Track opens, responses, and engagement. Auto-follow-up.</div>
+          <div class="step-desc">Send personalized outreach messages to passive candidates. Track opens, responses, and engagement. Auto-follow-up with frequency guardrails.</div>
           <div class="step-actions">
             <span class="step-action">Personalize</span>
             <span class="step-action">Sequence</span>
             <span class="step-action">Track responses</span>
+          </div>
+        </div>
+        
+        <div class="step step--ai">
+          <div class="step-badge">AI</div>
+          <div class="step-icon">🔄</div>
+          <div class="step-title">Data Sync & Export</div>
+          <div class="step-desc">Before job closes, export all candidate data from external platforms (LinkedIn, Indeed) to central system. No candidate data left behind.</div>
+          <div class="step-actions">
+            <span class="step-action">Export before close</span>
+            <span class="step-action">Dedupe records</span>
+            <span class="step-action">Central repository</span>
           </div>
         </div>
       </div>
@@ -588,36 +674,38 @@
         <div class="step step--ai">
           <div class="step-badge">AI</div>
           <div class="step-icon">📄</div>
-          <div class="step-title">Resume Screening</div>
-          <div class="step-desc">Parse and score all incoming resumes against job requirements. Auto-reject unqualified. Rank qualified candidates by fit score.</div>
+          <div class="step-title">Resume + Application Screening</div>
+          <div class="step-desc">Parse and score all incoming resumes AND application questions against job requirements. Auto-reject unqualified based on minimum qualifications. Rank qualified candidates by fit score.</div>
           <div class="step-actions">
             <span class="step-action">Parse resume</span>
+            <span class="step-action">Review app questions</span>
             <span class="step-action">Score fit</span>
-            <span class="step-action">Auto-reject</span>
           </div>
+          <div class="step-note">📌 Scoring follows documented business rules for compliance</div>
         </div>
         
         <div class="step step--ai">
           <div class="step-badge">AI</div>
-          <div class="step-icon">📞</div>
-          <div class="step-title">Initial Phone Screen</div>
-          <div class="step-desc">Conduct automated phone/video screen with pre-set questions. Transcribe, analyze responses, and score candidate. Schedule next step if passed.</div>
+          <div class="step-icon">📹</div>
+          <div class="step-title">Initial Screen (Video or Phone)</div>
+          <div class="step-desc">Invite candidates to submit short video responses OR conduct automated phone screen. AI manages invitations, reminders, and collection. Analyzes responses for personality, communication, and fit.</div>
           <div class="step-actions">
-            <span class="step-action">Auto-schedule</span>
-            <span class="step-action">Conduct screen</span>
-            <span class="step-action">Score responses</span>
+            <span class="step-action">Send invite</span>
+            <span class="step-action">Collect responses</span>
+            <span class="step-action">Analyze + tag</span>
           </div>
+          <div class="step-note">📌 Video preferred — better candidate signal, lower friction</div>
         </div>
         
         <div class="step step--ai">
           <div class="step-badge">AI</div>
           <div class="step-icon">📝</div>
           <div class="step-title">Skills Assessment</div>
-          <div class="step-desc">Send role-appropriate assessment (technical test, case study, writing sample). Auto-grade and add to candidate scorecard.</div>
+          <div class="step-desc">Send role-appropriate assessment (technical test, case study, writing sample). Auto-grade and add to candidate scorecard. Handle accommodation requests per existing policy.</div>
           <div class="step-actions">
             <span class="step-action">Send assessment</span>
             <span class="step-action">Auto-grade</span>
-            <span class="step-action">Update scorecard</span>
+            <span class="step-action">ADA accommodations</span>
           </div>
         </div>
         
@@ -674,11 +762,11 @@
           <div class="step-badge">AI</div>
           <div class="step-icon">📊</div>
           <div class="step-title">Candidate Comparison</div>
-          <div class="step-desc">Aggregate all scores, feedback, and assessments into a comparison matrix. Rank candidates with recommendation and rationale.</div>
+          <div class="step-desc">Aggregate all scores, feedback, and assessments into a comparison matrix. Rank candidates with recommendation and rationale. Send daily updates to hiring managers.</div>
           <div class="step-actions">
             <span class="step-action">Aggregate scores</span>
             <span class="step-action">Compare matrix</span>
-            <span class="step-action">Rank + recommend</span>
+            <span class="step-action">Daily updates</span>
           </div>
         </div>
         
@@ -686,10 +774,10 @@
           <div class="step-badge">AI</div>
           <div class="step-icon">📱</div>
           <div class="step-title">Reference Checks</div>
-          <div class="step-desc">Contact references via email/phone with structured questions. Compile feedback and add to candidate profile.</div>
+          <div class="step-desc">Request reference check consent via application. Contact references via email/phone with structured questions. Compile feedback and add to candidate profile.</div>
           <div class="step-actions">
+            <span class="step-action">Request consent</span>
             <span class="step-action">Contact refs</span>
-            <span class="step-action">Structured Qs</span>
             <span class="step-action">Compile report</span>
           </div>
         </div>
@@ -730,9 +818,22 @@
         
         <div class="step step--human">
           <div class="step-badge">HUMAN</div>
+          <div class="step-icon">📞</div>
+          <div class="step-title">Verbal Offer Call</div>
+          <div class="step-desc">Human delivers verbal offer to candidate before written documentation. Allows space for questions, clarification, and initial negotiation discussion.</div>
+          <div class="step-actions">
+            <span class="step-action">Call candidate</span>
+            <span class="step-action">Discuss offer</span>
+            <span class="step-action">Answer questions</span>
+          </div>
+          <div class="step-note">📌 Preserves candidate experience — verbal before written</div>
+        </div>
+        
+        <div class="step step--human">
+          <div class="step-badge">HUMAN</div>
           <div class="step-icon">✍️</div>
           <div class="step-title">Approve Offer Letter</div>
-          <div class="step-desc">Final human review and approval of offer terms before sending to candidate.</div>
+          <div class="step-desc">Final human review and approval of offer terms before sending written documentation to candidate.</div>
           <div class="step-actions">
             <span class="step-action">Review terms</span>
             <span class="step-action">Approve/Edit</span>
@@ -781,23 +882,24 @@
           <div class="step-badge">AI</div>
           <div class="step-icon">🔒</div>
           <div class="step-title">Background Check</div>
-          <div class="step-desc">Initiate background check via integrated provider. Monitor status and flag any issues for review.</div>
+          <div class="step-desc">Initiate background check via integrated provider. Monitor status. AI follows business rules for clear results; exceptions route to human for adverse action review.</div>
           <div class="step-actions">
             <span class="step-action">Initiate check</span>
             <span class="step-action">Monitor status</span>
-            <span class="step-action">Flag issues</span>
+            <span class="step-action">Route exceptions</span>
           </div>
+          <div class="step-note">📌 Pre-adverse/adverse notices automated per business rules</div>
         </div>
         
         <div class="step step--ai">
           <div class="step-badge">AI</div>
           <div class="step-icon">📑</div>
           <div class="step-title">Paperwork & Compliance</div>
-          <div class="step-desc">Send all new hire forms (I-9, W-4, direct deposit, handbook acknowledgment) via e-signature. Track completion.</div>
+          <div class="step-desc">Send all new hire forms (I-9, W-4, direct deposit, handbook acknowledgment) via e-signature. Track completion. Request candidate bio/photo for announcement.</div>
           <div class="step-actions">
             <span class="step-action">Send forms</span>
+            <span class="step-action">Request bio</span>
             <span class="step-action">Track completion</span>
-            <span class="step-action">Compliance check</span>
           </div>
         </div>
         
@@ -805,11 +907,11 @@
           <div class="step-badge">AI</div>
           <div class="step-icon">💻</div>
           <div class="step-title">IT & Equipment Setup</div>
-          <div class="step-desc">Submit IT ticket for laptop, accounts, access badges, and software. Track provisioning and confirm ready for Day 1.</div>
+          <div class="step-desc">Submit IT ticket for laptop, accounts, access badges, and software. Track provisioning and confirm ready for Day 1. Notify hiring manager of status.</div>
           <div class="step-actions">
             <span class="step-action">Submit ticket</span>
             <span class="step-action">Track setup</span>
-            <span class="step-action">Confirm ready</span>
+            <span class="step-action">Notify manager</span>
           </div>
         </div>
         
@@ -829,11 +931,11 @@
           <div class="step-badge">AI</div>
           <div class="step-icon">🔐</div>
           <div class="step-title">System Access & Permissions</div>
-          <div class="step-desc">Provision access to all role-appropriate systems based on department matrix. Set permissions, create accounts, and document all credentials.</div>
+          <div class="step-desc">Provision access to all role-appropriate systems based on department matrix. Set permissions, create accounts, and document all credentials. Send access summary to hiring manager before Day 1.</div>
           <div class="step-actions">
             <span class="step-action">Provision accounts</span>
             <span class="step-action">Set permissions</span>
-            <span class="step-action">Document access</span>
+            <span class="step-action">Notify manager</span>
           </div>
         </div>
         
@@ -866,10 +968,10 @@
           <div class="step-badge">AI</div>
           <div class="step-icon">📬</div>
           <div class="step-title">Pre-Arrival Communication</div>
-          <div class="step-desc">Send Day 1 details: arrival time, parking, dress code, first-day schedule, who to ask for. Excitement builder email.</div>
+          <div class="step-desc">Send Day 1 details: arrival time, parking, dress code, first-day schedule, who to ask for. Include role/location personalization. Excitement builder email.</div>
           <div class="step-actions">
             <span class="step-action">Day 1 details</span>
-            <span class="step-action">Schedule</span>
+            <span class="step-action">Schedule included</span>
             <span class="step-action">Welcome email</span>
           </div>
         </div>
@@ -890,11 +992,11 @@
           <div class="step-badge">AI</div>
           <div class="step-icon">📣</div>
           <div class="step-title">Team Announcement</div>
-          <div class="step-desc">Draft and send new hire announcement to the team. Include bio, photo (if provided), role, and fun facts.</div>
+          <div class="step-desc">Draft and send new hire announcement to the team via broadcast. Include bio (from pre-boarding), photo (if provided), role, and fun facts.</div>
           <div class="step-actions">
             <span class="step-action">Draft announcement</span>
-            <span class="step-action">Send to team</span>
-            <span class="step-action">Slack/email</span>
+            <span class="step-action">Broadcast to team</span>
+            <span class="step-action">Include bio</span>
           </div>
         </div>
         
@@ -988,15 +1090,15 @@
     <!-- STATS -->
     <div class="stats">
       <div class="stat">
-        <div class="stat-value">31<span>/34</span></div>
+        <div class="stat-value">33<span>/38</span></div>
         <div class="stat-label">Steps Automated</div>
       </div>
       <div class="stat">
-        <div class="stat-value">91<span>%</span></div>
+        <div class="stat-value">87<span>%</span></div>
         <div class="stat-label">AI-Handled</div>
       </div>
       <div class="stat">
-        <div class="stat-value">3</div>
+        <div class="stat-value">5</div>
         <div class="stat-label">Human Decisions</div>
       </div>
       <div class="stat">
@@ -1022,7 +1124,7 @@
           <span>Day 11<br>Decision</span>
         </div>
         <div class="timeline-segment timeline-segment--human" style="flex: 1;">
-          <span>Day 12<br>Offer</span>
+          <span>Day 12<br>Offer Call</span>
         </div>
         <div class="timeline-segment timeline-segment--ai" style="flex: 2;">
           <span>Days 13-14<br>Pre-Board</span>
@@ -1036,10 +1138,24 @@
       </div>
     </div>
     
+    <!-- CHANGELOG -->
+    <div class="changelog">
+      <h3>📝 Changelog</h3>
+      <div class="changelog-item">
+        <span class="changelog-date">Feb 12, 2026</span>
+        <span class="changelog-text"><strong>v2.0</strong> — Added sponsorship optimization, frequency controls, video screen option, verbal offer step, data sync safeguards, compliance notes</span>
+      </div>
+      <div class="changelog-item">
+        <span class="changelog-date">Feb 11, 2026</span>
+        <span class="changelog-text"><strong>v1.0</strong> — Initial workflow published</span>
+      </div>
+    </div>
+    
   </div>
   
   <div class="footer">
-    <p>🔷 Powered by Millie | AI-Automated Hiring Workflow</p>
+    <p>🔷 RISE Residential | AI-Automated Hiring Workflow</p>
+    <p style="margin-top: 5px; font-size: 11px;">Owner: Jessica Hannon | Auditor: Jessica Hannon</p>
   </div>
 </div>
 
